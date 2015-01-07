@@ -1,4 +1,6 @@
-# Objective-C Style Guide (based on [NYT Style Guide](https://github.com/NYTimes/objetive-c-style-guide/issues))
+# Objective-C Style Guide 
+
+(based on the [NYT Objective-C Style Guide](https://github.com/NYTimes/objetive-c-style-guide/issues))
 
 ## Introduction
 
@@ -52,7 +54,7 @@ UIApplication.sharedApplication.delegate;
 ## Spacing
 
 * Indent using tabs. Be sure to set this preference in Xcode.
-* Method braces and other braces (`if`/`else`/`switch`/`while` etc.) always open on the next line as the statement and close on a new line.
+* Method braces and other braces (`if`/`else`/`switch`/`while` etc.) always open and close on a new line, except on block calls.
 
 **For example:**
 ```objc
@@ -74,7 +76,8 @@ Conditional bodies should always use braces even when a conditional body could b
 
 **For example:**
 ```objc
-if (!error) {
+if (!error) 
+{
     return success;
 }
 ```
@@ -112,7 +115,8 @@ When methods return an error parameter by reference, switch on the returned valu
 **For example:**
 ```objc
 NSError *error;
-if (![self trySomethingWithError:&error]) {
+if (![self trySomethingWithError:&error]) 
+{
     // Handle Error
 }
 ```
@@ -121,7 +125,8 @@ if (![self trySomethingWithError:&error]) {
 ```objc
 NSError *error;
 [self trySomethingWithError:&error];
-if (error) {
+if (error) 
+{
     // Handle Error
 }
 ```
@@ -184,12 +189,12 @@ UIButton *settingsButton;
 UIButton *setBut;
 ```
 
-A three letter prefix (e.g. `NYT`) should always be used for class names and constants, however may be omitted for Core Data entity names. Constants should be camel-case with all words capitalized and prefixed by the related class name for clarity.
+A two (or three) letter prefix (e.g. `BP`) should always be used for class names and constants, however may be omitted for Core Data entity names. Constants should be camel-case with all words capitalized and prefixed by the related class name for clarity.
 
 **For example:**
 
 ```objc
-static const NSTimeInterval NYTArticleViewControllerNavigationFadeAnimationDuration = 0.3;
+static const NSTimeInterval BPNavigationFadeAnimationDuration = 0.3;
 ```
 
 **Not:**
@@ -227,9 +232,11 @@ Block comments should generally be avoided, as code should be as self-documentin
 `init` methods should be structured like this:
 
 ```objc
-- (instancetype)init {
+- (instancetype)init 
+{
     self = [super init]; // or call the designated initializer
-    if (self) {
+    if (self) 
+    {
         // Custom initialization
     }
 
@@ -294,9 +301,9 @@ Constants are preferred over in-line string literals or numbers, as they allow f
 **For example:**
 
 ```objc
-static NSString * const NYTAboutViewControllerCompanyName = @"The New York Times Company";
+static NSString * const BPAboutViewControllerCompanyName = @"The New York Times Company";
 
-static const CGFloat NYTImageThumbnailHeight = 50.0;
+static const CGFloat BPImageThumbnailHeight = 50.0;
 ```
 
 **Not:**
@@ -314,7 +321,7 @@ When using `enum`s, it is recommended to use the new fixed underlying type speci
 **Example:**
 
 ```objc
-typedef NS_ENUM(NSInteger, NYTAdRequestState) {
+typedef NS_ENUM(NSInteger, BPAdRequestState) {
     NYTAdRequestStateInactive,
     NYTAdRequestStateLoading
 };
@@ -327,11 +334,11 @@ When working with bitmasks, use the `NS_OPTIONS` macro.
 **Example:**
 
 ```objc
-typedef NS_OPTIONS(NSUInteger, NYTAdCategory) {
-  NYTAdCategoryAutos      = 1 << 0,
-  NYTAdCategoryJobs       = 1 << 1,
-  NYTAdCategoryRealState  = 1 << 2,
-  NYTAdCategoryTechnology = 1 << 3
+typedef NS_OPTIONS(NSUInteger, BPAdCategory) {
+  BPAdCategoryAutos      = 1 << 0,
+  BPAdCategoryJobs       = 1 << 1,
+  BPAdCategoryRealState  = 1 << 2,
+  BPAdCategoryTechnology = 1 << 3
 };
 ```
 
@@ -411,7 +418,8 @@ Text and example taken from the [Cocoa Naming Guidelines](https://developer.appl
 
 Singleton objects should use a thread-safe pattern for creating their shared instance.
 ```objc
-+ (instancetype)sharedInstance {
++ (instancetype)sharedInstance 
+{
    static id sharedInstance = nil;
 
    static dispatch_once_t onceToken;
